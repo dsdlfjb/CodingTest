@@ -55,7 +55,7 @@ int main()
 
 void DFS(int num, int jaritsu)
 {
-	if (jaritsu == N)
+	if (jaritsu == n)
 	{
 		// 소수이면 출력
 		if (isPrime(num))
