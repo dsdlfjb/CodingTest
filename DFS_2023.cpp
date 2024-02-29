@@ -36,9 +36,49 @@ N자리 수 중에서 신기한 소수를 오름차순으로 정렬해서 한 줄에 하나씩 출력한다.
 #include <iostream>
 using namespace std;
 
+static int n;		// DFS 함수 안에서도 쓰기 위해 전역변수 선언
+void DFS (int num, int jaritsu);
+bool isPrime (int num);
+
 int main()
 {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
+
+	cin >> n;
+	DFS(2, 1);		// 소수, 해당 소수의 자릿수
+	DFS(3, 1);
+	DFS(5, 1);
+	DFS(7, 1);
+}
+
+void DFS(int num, int jaritsu)
+{
+	if (jaritsu == N)
+	{
+		// 소수이면 출력
+		if (isPrime(num))
+			cout << num << "\n";
+		return;
+	}
+	for (int i = 1; i < 10; i++)
+	{
+		if (i % 2 == 0) continue;
+
+		if (isPrime(num * 10 + i))
+		{
+			DFS(num * 10 + i, jaritsu + 1);
+		}
+	}
+}
+
+bool isPrime(int num)
+{
+	for (int i = 2; i <= num / 2; i++)
+	{
+		if (num % i == 0) return false;
+	}
+	
+	return true;
 }
